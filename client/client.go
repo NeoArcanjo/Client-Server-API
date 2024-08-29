@@ -35,7 +35,11 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Erro ao ler resposta: %v\n", err)
 	}
 	var data ExchangeRate
-	err = json.Unmarshal(body, &data)
+	saveResult(body, &data)
+}
+
+func saveResult(body []byte, data *ExchangeRate) {
+	err := json.Unmarshal(body, &data)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Erro ao decodificar resposta: %v\n", err)
 	}
